@@ -1,0 +1,8 @@
+# VisualStudio 2017 dotNET Windows Application Project
+
+# visual studio configuration directory
+.vs
+
+# build directory
+bin
+obj
