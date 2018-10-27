@@ -1,6 +1,6 @@
-﻿using System.Timers;
+﻿using DcmSMService.Tasks;
 using DcmSMService.Utils;
-using DcmSMService.Tasks;
+using System.Timers;
 
 namespace DcmSMService.Task.Impl
 {
