@@ -8,7 +8,6 @@
 ///-----------------------------------------------------------------
 
 using System;
-using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 
@@ -22,7 +21,7 @@ namespace DcmSMService.Utils
         ///     <add key = "AllowTrace" value="false" />
         /// </appSettings>
         /// </summary>  
-        static bool mIsAllowTrace = Boolean.Parse(ConfigurationManager.AppSettings[ConfigHelper.KEY_APPCONF_ALLOW_TRACE]);
+        static bool mIsAllowTrace = Boolean.Parse(Settings.Get(Settings.Key.AllowTrace));
             
         static Log()
         {
