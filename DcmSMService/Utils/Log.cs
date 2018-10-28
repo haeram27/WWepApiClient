@@ -1,9 +1,10 @@
 ﻿///-----------------------------------------------------------------
 ///   ClassName:      Log
-///   Description:    helps to make application log file
+///   Description:    to help making application log file
 ///   Author:         soon_woo_hwang@mcafee.com                    
 ///   Date:           2018/10/22
-///   Notes:          To config enable logging, "System.Configuration.DLL" is required as References(Dependency)
+///   Notes:          To config enable logging, "System.Configuration.DLL" 
+///                   is required as References(Dependency) to read App.config 
 ///   Revision History:
 ///-----------------------------------------------------------------
 
