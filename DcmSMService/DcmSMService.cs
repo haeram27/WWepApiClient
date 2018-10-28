@@ -15,7 +15,6 @@ namespace DcmSMService
             InitializeComponent();
         }
 
-
         internal void TestStartupAndStop(string[] args)
         {
             this.OnStart(args);
