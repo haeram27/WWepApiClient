@@ -18,7 +18,8 @@ namespace DcmSMService
         internal void TestStartupAndStop(string[] args)
         {
             this.OnStart(args);
-            var task = new LogTask(ScheduleTask.INTERVAL_SEC);
+            //var task = new LogTask(ScheduleTask.INTERVAL_SEC, true);
+            var task = new GithubWebApiTestTask(ScheduleTask.INTERVAL_SEC, false);
             task.Start();
             System.Threading.Thread.Sleep(1000 * 60);
             this.OnStop();

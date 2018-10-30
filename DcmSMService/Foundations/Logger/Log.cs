@@ -12,12 +12,15 @@ using Foundations.Configuration;
 using Foundations.File;
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 
 namespace Foundations.Logger
 {
     public static class Log
     {
+        private const string TAG = "Log";
+
         /// <summary>
         /// To Enable trace, "Trace_Allowed" setting key and value are should be specified in App.config
         /// <appSettings>
@@ -30,7 +33,7 @@ namespace Foundations.Logger
         {
             string dirPath = Paths.tempPath;
             string appName = Paths.appName;
-            string filePath = dirPath + appName + "_" + GetTime() + ".log";
+            string filePath = dirPath + appName + "_" + GetFileTime() + ".log";
 
             DirectoryInfo di = new DirectoryInfo(dirPath);
             if (di.Exists == false)
@@ -46,9 +49,16 @@ namespace Foundations.Logger
             Trace.AutoFlush = true;
         }
 
-        private static string GetTime()
+        private static string GetFileTime()
         {
-            return DateTime.Now.ToString("yyyyMMddHHmmssfff");
+            CultureInfo ci = CultureInfo.InvariantCulture;
+            return DateTime.Now.ToString(Foundations.Common.Constants.DateTimeFormatsForFileName, ci);
+        }
+
+        private static string GetLogTime()
+        {
+            CultureInfo ci = CultureInfo.InvariantCulture;
+            return DateTime.Now.ToString(Foundations.Common.Constants.DateTimeFormatsForLog, ci);
         }
 
         /// <summary>
@@ -61,9 +71,16 @@ namespace Foundations.Logger
         /// <param name="msg"> content string </param>
         public static void Info(string tag, string msg)
         {
-            if (mIsAllowTrace)
+            try
+            { 
+                if (mIsAllowTrace)
+                {
+                    Trace.TraceInformation(GetLogTime() + " : [" + tag + "] : " + msg);
+                }
+            }
+            catch (Exception ex)
             {
-                Trace.TraceInformation(GetTime() + " : [" + tag + "] : " + msg);
+                Log.Error(TAG, ex.Message);
             }
         }
 
@@ -77,9 +94,16 @@ namespace Foundations.Logger
         /// <param name="msg"> content string </param>
         public static void Warn(string tag, string msg)
         {
-            if (mIsAllowTrace)
+            try
             {
-                Trace.TraceWarning(GetTime() + " : [" + tag + "] : " + msg);
+                if (mIsAllowTrace)
+                {
+                    Trace.TraceWarning(GetLogTime() + " : [" + tag + "] : " + msg);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(TAG, ex.Message);
             }
         }
 
@@ -93,10 +117,17 @@ namespace Foundations.Logger
         /// <param name="msg"> content string </param>
         public static void Error(string tag, string msg)
         {
-            if (mIsAllowTrace)
+            try
             {
-                Trace.TraceError(GetTime() + " : [" + tag + "] : " + msg);
-            }           
+                if (mIsAllowTrace)
+                {
+                    Trace.TraceError(GetLogTime() + " : [" + tag + "] : " + msg);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(TAG, ex.Message);
+            }
         }
     }
 }

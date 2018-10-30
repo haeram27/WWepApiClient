@@ -8,7 +8,7 @@ namespace DcmSMService.Task.Impl
     {
         private const string TAG = "LogTask";
 
-        public LogTask(uint interval) : base(interval) {}
+        public LogTask(double interval, bool autoreset) : base(interval, autoreset) {}
 
         public override void Run(object sender, ElapsedEventArgs args)
         {

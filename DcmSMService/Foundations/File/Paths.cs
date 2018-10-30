@@ -16,14 +16,14 @@ namespace Foundations.File
         // Name of this application
         public static readonly string appName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name;
 
-        // Path to save log file: System Temp directory 
+        // Path to Temp directory 
         public static readonly string tempPath = @"c:\Temp\";
 
-        // Path to save System %APPDATA% directory
+        // Path to System %APPDATA% directory
         // To get more Winodws's SpecialFolder Info, please check Environment.SpecialFolder enum
         public static readonly string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
-        // Path to save this application's directory in %APPDATA%
-        public static readonly string appDataDedicatedPath = appDataPath+ @"\" + appName;
+        // Path to this application's directory in %APPDATA%
+        public static readonly string dedicatedAppDataPath = appDataPath+ @"\" + appName;
     }
 }
