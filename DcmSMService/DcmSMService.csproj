@@ -69,6 +69,7 @@
     <Compile Include="DcmSMService.Designer.cs">
       <DependentUpon>DcmSMService.cs</DependentUpon>
     </Compile>
+    <Compile Include="Foundations\File\Paths.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Task.Impl\LogTask.cs" />
@@ -98,8 +99,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Foundations\File\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
