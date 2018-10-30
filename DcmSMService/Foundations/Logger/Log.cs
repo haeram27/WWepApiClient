@@ -28,7 +28,7 @@ namespace Foundations.Logger
 
         static Log()
         {
-            string dirpath = Paths.tempPath;
+            string dirPath = Paths.tempPath;
             string appName = Paths.appName;
             string filePath = dirPath + appName + "_" + GetTime() + ".log";
 
