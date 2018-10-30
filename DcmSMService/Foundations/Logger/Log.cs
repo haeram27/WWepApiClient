@@ -8,29 +8,28 @@
 ///   Revision History:
 ///-----------------------------------------------------------------
 
+using Foundations.Configuration;
+using Foundations.File;
 using System;
 using System.Diagnostics;
 using System.IO;
 
-namespace DcmSMService.Utils
+namespace Foundations.Logger
 {
     public static class Log
     {
         /// <summary>
-        /// To Enable trace on file and console "AllowTrace" setting key and value are should be specified in App.config
+        /// To Enable trace, "Trace_Allowed" setting key and value are should be specified in App.config
         /// <appSettings>
-        ///     <add key = "AllowTrace" value="false" />
+        ///     <add key = "Trace_Allowed" value="false" />
         /// </appSettings>
         /// </summary>  
-        static bool mIsAllowTrace = Boolean.Parse(Settings.Get(Settings.Key.AllowTrace));
-            
+        static bool mIsAllowTrace = Boolean.Parse(Setting.Get(Setting.Key.Trace_Allowed));
+
         static Log()
         {
-            string appName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name;
-            //Path to save log file: System Temp directory 
-            string dirPath = @"c:\Temp\";
-            //Path to save log file: %APPDATA% directory
-            //string dirPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + AppName + @"\";
+            string dirpath = Paths.tempPath;
+            string appName = Paths.appName;
             string filePath = dirPath + appName + "_" + GetTime() + ".log";
 
             DirectoryInfo di = new DirectoryInfo(dirPath);
@@ -40,7 +39,9 @@ namespace DcmSMService.Utils
             }
 
             Trace.Listeners.Clear();
+            //to print log on Console window. use ConsoleTraceListener when this app is running as ConsoleApplication
             Trace.Listeners.Add(new ConsoleTraceListener());
+            //to print log on Console window. use TextWriterTraceListener when this app is running as without window for UI.
             Trace.Listeners.Add(new TextWriterTraceListener(filePath));
             Trace.AutoFlush = true;
         }

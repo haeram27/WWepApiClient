@@ -72,9 +72,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Task.Impl\LogTask.cs" />
-    <Compile Include="Tasks\ScheduleTask.cs" />
-    <Compile Include="Utils\Settings.cs" />
-    <Compile Include="Utils\Log.cs" />
+    <Compile Include="Foundations\Task\ScheduleTask.cs" />
+    <Compile Include="Foundations\Configuration\Setting.cs" />
+    <Compile Include="Foundations\Logger\Log.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -98,6 +98,8 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Foundations\File\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

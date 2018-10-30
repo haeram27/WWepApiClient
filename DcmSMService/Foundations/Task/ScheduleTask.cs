@@ -1,5 +1,5 @@
 ﻿///-----------------------------------------------------------------
-///   ClassName:      ConfigHelper
+///   ClassName:      ScheduleTask
 ///   Description:    Run task repeatly with interval
 ///   Author:         soon_woo_hwang@mcafee.com                    
 ///   Date:           2018/10/27
@@ -8,11 +8,11 @@
 ///-----------------------------------------------------------------
 ///
 
-using DcmSMService.Utils;
+using Foundations.Logger;
 using System;
 using System.Timers;
 
-namespace DcmSMService.Tasks
+namespace Foundations.Task
 {
     public abstract class ScheduleTask
     {
@@ -33,15 +33,6 @@ namespace DcmSMService.Tasks
         {
             mTimer = new Timer();
             mTimer.Interval = interval;  //msec
-            mTimer.Elapsed += new ElapsedEventHandler(this.Run);
-            try
-            {
-                mTimer.Start();
-            }
-            catch (Exception e)
-            {
-                Log.Error(TAG, e.Message);
-            }
         }
 
         ~ScheduleTask()
@@ -56,6 +47,33 @@ namespace DcmSMService.Tasks
             }
         }
 
+        /// <summary>
+        /// Start ScheduleTask.
+        /// 
+        ///     var task = new ScheduleTask(ScheduleTask.INTERVAL_SEC);
+        ///     task.Start();
+        /// </summary>
+        public void Start()
+        {
+            mTimer.Elapsed += new ElapsedEventHandler(this.Run);
+            try
+            {
+                mTimer.Start();
+            }
+            catch (Exception e)
+            {
+                Log.Error(TAG, e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Pause a started ScheduleTask
+        /// 
+        /// usage:
+        ///     var task = new ScheduleTask(ScheduleTask.INTERVAL_SEC);
+        ///     task.Start();
+        ///     task.Pause();
+        /// </summary>
         public void Pause()
         {
             if (mTimer.Enabled)
@@ -64,6 +82,15 @@ namespace DcmSMService.Tasks
             }     
         }
 
+        /// <summary>
+        /// Resume a paused ScheduleTask
+        /// 
+        /// usage:
+        ///     var task = new ScheduleTask(ScheduleTask.INTERVAL_SEC);
+        ///     task.Start();
+        ///     task.Pause();
+        ///     task.Resume();
+        /// </summary>
         public void Resume()
         {
             if (!mTimer.Enabled)

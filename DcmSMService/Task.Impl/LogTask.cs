@@ -1,5 +1,5 @@
-﻿using DcmSMService.Tasks;
-using DcmSMService.Utils;
+﻿using Foundations.Task;
+using Foundations.Logger;
 using System.Timers;
 
 namespace DcmSMService.Task.Impl

@@ -1,5 +1,5 @@
-﻿using DcmSMService.Utils;
-using DcmSMService.Tasks;
+﻿using Foundations.Logger;
+using Foundations.Task;
 using DcmSMService.Task.Impl;
 using System.ServiceProcess;
 
@@ -18,13 +18,15 @@ namespace DcmSMService
         internal void TestStartupAndStop(string[] args)
         {
             this.OnStart(args);
+            var task = new LogTask(ScheduleTask.INTERVAL_SEC);
+            task.Start();
             System.Threading.Thread.Sleep(1000 * 60);
             this.OnStop();
         }
 
         protected override void OnStart(string[] args)
         {
-            new LogTask(ScheduleTask.INTERVAL_SEC);
+            
         }
 
         protected override void OnPause()
