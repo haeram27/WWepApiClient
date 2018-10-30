@@ -19,27 +19,27 @@ namespace DcmSMService.WebAPIClient
 
             foreach (var repo in repositories)
             {
-                Log.Info(TAG, repo.Name);
-                Log.Info(TAG, repo.Description);
+                Log.Debug(TAG, repo.Name);
+                Log.Debug(TAG, repo.Description);
 
                 if (repo.GitHubHomeUrl != null)
                 {
-                    Log.Info(TAG, repo.GitHubHomeUrl.ToString());
+                    Log.Debug(TAG, repo.GitHubHomeUrl.ToString());
                 }
 
                 if (repo.Homepage != null)
                 {
-                    Log.Info(TAG, repo.Homepage.ToString());
+                    Log.Debug(TAG, repo.Homepage.ToString());
                 }
 
-                Log.Info(TAG, repo.Watchers.ToString());
+                Log.Debug(TAG, repo.Watchers.ToString());
 
                 if (repo.LastPush != null)
                 {
-                    Log.Info(TAG, repo.LastPush.ToString());
+                    Log.Debug(TAG, repo.LastPush.ToString());
                 }
                 
-                Log.Info(TAG, Environment.NewLine);
+                Log.Debug(TAG, Environment.NewLine);
             }
         }
 

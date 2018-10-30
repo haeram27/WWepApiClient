@@ -27,7 +27,7 @@ namespace DcmSMService
 
         protected override void OnStart(string[] args)
         {
-            
+            Log.Info(TAG, "OnStart");
         }
 
         protected override void OnPause()

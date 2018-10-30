@@ -85,6 +85,31 @@ namespace Foundations.Logger
         }
 
         /// <summary>
+        /// to record debug level logs
+        /// Caution: debug log level only can be printed in Debug build 
+        /// 
+        /// usage:
+        ///     Log.Debug("MyTag", "Message");
+        /// </summary>
+        /// <param name="tag"> identifier of this message </param>
+        /// <param name="msg"> content string </param>
+        [Conditional("DEBUG")]
+        public static void Debug(string tag, string msg)
+        {
+            try
+            {
+                if (mIsAllowTrace)
+                {
+                    Trace.TraceInformation(GetLogTime() + " : [" + tag + "] : " + msg);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(TAG, ex.Message);
+            }
+        }
+
+        /// <summary>
         /// to record warning level logs
         /// 
         /// usage:
